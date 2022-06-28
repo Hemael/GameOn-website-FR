@@ -24,10 +24,14 @@ function changeDisplayModal(displayChange){
 }
 
 
-function validate(e){
+function validate(event){
+  event.preventDefault();
   let errors = [];
   let prenom = document.getElementsByName("first")[0].value;
   let nom = document.getElementsByName("last")[0].value;
+  
+  console.log(event.target[5].value);
+  console.log(event.target.getAttribute("name"))
 
   if(prenom.length < 2){
     errors.push("entrez un prénom correct")
@@ -36,16 +40,17 @@ function validate(e){
     errors.push("entrez un nom correct")
   }
   if(errors.length > 0){
-    e.preventDefault();
+    
   }
-  
-  
 
 }
 
+function isValid(value) {
+  return /^[a-zA-Z\s\-À-ÖØ-öø-ÿ]*(-)?[a-zA-Z\s\-À-ÖØ-öø-ÿ]+$/.test(value);
+  
+}
 
-
-
+//console.log(isValid("Hénêl1"))
 
 
 
