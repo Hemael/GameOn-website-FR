@@ -7,51 +7,104 @@ function editNav() {
   }
 }
 
+const regexs = {
+  "text" : /^[a-zA-Z\s\-À-ÖØ-öø-ÿ]*(-)?[a-zA-Z\s\-À-ÖØ-öø-ÿ]+$/,
+  "mail" : /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+  "nombre" : /^[0-9]{1,2}$/,
+}
+
 // DOM Elements
+// permet de recuperer l'element qui a la classe entre parenthese
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const closeBtn = document.querySelectorAll(".close");
 const formData = document.querySelectorAll(".formData");
+const btn = document.getElementById("submit-btn");
+console.log(btn);
 
 // launch modal event
+// permet d'attribuer un evenement a un element
 modalBtn.forEach((btn) => btn.addEventListener("click", () => {changeDisplayModal("block")}));
 closeBtn.forEach((btn) => btn.addEventListener("click", () => {changeDisplayModal("none")}));
 
 
+//fonction qui appel quand l'evenement est declenché
 function changeDisplayModal(displayChange){
-  console.log(modalbg.style.display);
   modalbg.style.display = displayChange;
 }
 
 
-function validate(event){
-  event.preventDefault();
-  let errors = [];
-  let prenom = document.getElementsByName("first")[0].value;
-  let nom = document.getElementsByName("last")[0].value;
-  
-  console.log(event.target[5].value);
-  console.log(event.target.getAttribute("name"))
+function validate(e){
+  //annule le comportement par defaut
+  //e.preventDefault();
 
-  if(prenom.length < 2){
-    errors.push("entrez un prénom correct")
+  document.querySelectorAll(".error").forEach((p) => p.remove());
+  document.querySelectorAll(".errorContour").forEach((p) => p.classList.remove("errorContour"));
+  let errors = [];
+  let prenom = document.getElementsByName("first")[0];
+  let nom = document.getElementsByName("last")[0];
+  let adresseMail = document.getElementsByName("email")[0];
+  let number = document.getElementsByName("quantity")[0];
+  let location = document.querySelector("[name='location']:checked");
+  let verification = document.querySelector("#checkbox1");
+  let date = document.getElementsByName("birthdate")[0];
+
+
+  
+  if(prenom.value.length < 2 || !isValid("text",prenom.value)){
+    errors.push("entrez un prénom correct");
+    addElement(prenom, "Veuillez entrer 2 caractères ou plus pour le champ du prenom.");
   }
-  if(nom.length < 2){
-    errors.push("entrez un nom correct")
+  
+  if(nom.value.length < 2 || !isValid("text",nom.value)){
+    errors.push("entrez un nom correct");
+    addElement(nom, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
   }
-  if(errors.length > 0){
+  
+  if(!isValid("mail",adresseMail.value)){
+    errors.push("entrez une email correct");
+    addElement(adresseMail, "Veuillez entrer une adresse mail correct.");
     
   }
+  if(!isValid("nombre",number.value)){
+    errors.push("entrez une quantitée correct");
+    addElement(number, "Veuillez entrer un nombre.");
+    
+  }
+  if(location == null){
+    errors.push("entrez une location correct");
+    addElement(document.querySelector("[id='location1']"), "Vous devez choisir une option."); // car location est null
+    
+  }
+  if(verification.checked == false){
+    errors.push("acceptez les conditions d'utilisation");
+    addElement(verification, "Vous devez vérifier que vous acceptez les termes et conditions.");
+  }
+  console.log(date.value);
+  if(date.value == ""){
+    errors.push("entrez une date de naissance correct");
+    addElement(date, "Veuillez entrer une date de naissance.");
+  }
+
+  if(errors.length > 0){
+    console.log(errors);
+    e.preventDefault();
+  }
 
 }
 
-function isValid(value) {
-  return /^[a-zA-Z\s\-À-ÖØ-öø-ÿ]*(-)?[a-zA-Z\s\-À-ÖØ-öø-ÿ]+$/.test(value);
+function isValid(regex,value) {
+  return regexs[regex].test(value);
   
 }
 
-//console.log(isValid("Hénêl1"))
-
+function addElement(elementDom,texte){
+  let p = document.createElement("p");
+  p.classList.add("error");
+  elementDom.classList.add("errorContour");
+  p.append(texte);
+  elementDom.parentElement.append(p);
+}
 
 
 

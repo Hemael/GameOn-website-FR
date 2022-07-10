@@ -1,0 +1,40 @@
+
+
+if(prenom.length < 2 || !isValid(prenom)){
+    errors.push("entrez un prénom correct")
+}
+
+length : taille
+
+||(OR): or (veut dire ou)
+  
+! :sert a inverser (vrai devient faux et faux devient vrai)
+  
+
+
+
+
+
+
+function isValid(regex,value) {
+  return regexs[regex].test(value)
+}
+
+
+/[0-9]/ : declare la regex [0-9] (les /)
+
+regex.test(valeur) : verifie si la valeur est conforme a regex
+
+
+
+
+
+
+value : variable
+
+
+let location = document.querySelector("[name='location']:checked");
+
+on cherche dans le document un element qui a un attribut NAME avec comme valeur LOCATION (name = 'location') et qui est cocher (checked);
+ps :si aucun element correspond a ce selecteur la variable location aura comme valeur null
+
