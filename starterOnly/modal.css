@@ -17,7 +17,7 @@ body {
   background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
-  max-width: 1300px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -43,7 +43,7 @@ img {
 .topnav a {
   float: left;
   display: block;
-  color: #000000;
+  color: black;
   text-align: center;
   padding: 12px 12px;
   margin: 5px;
@@ -61,45 +61,21 @@ img {
 .topnav a.active {
   background-color: #ff0000;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 10px;
+  text-decoration: underline;
 }
 
 .topnav .icon {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
 
 
 
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
+
+
+
+
 
 main {
   font-size: 130%;
@@ -108,7 +84,7 @@ main {
   padding-top: 0.5vw;
   padding-left: 2vw;
   padding-right: 2vw;
-  margin: 1px 20px 15px;
+  /* margin: 60px 20px 15px; */
   border-radius: 2rem;
   text-align: justify;
 
@@ -160,13 +136,14 @@ main {
 .bground {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 4;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+  
 }
 
 .content {
@@ -180,7 +157,6 @@ main {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
 }
 
 .modal-body {
@@ -405,22 +381,24 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
+  
   border-radius: 10px;
-  display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  display: flex;
 }
 .hero-content {
-  padding: 51px 67px;
+  flex: 21%;
+  padding-top: 51px;
+  padding-left: 67px;
   grid-column: span 4;
   background: #232323;
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
+  min-width: 300px;
 }
 .hero-content::after {
   content: "";
@@ -445,21 +423,24 @@ input[data-error]::after {
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
+  width: unset;
 }
 .btn-signup {
   outline: none;
   text-transform: capitalize;
   font-size: 1.3rem;
-  padding: 15px 23px;
+  padding: 15px 40px;
   margin: 0;
   margin-top: 59px;
 }
 .hero-img {
+  flex: 57%;
   grid-column: span 8;
+  object-fit: cover;
 }
 .hero-img img {
   width: 100%;
-  height: 100%;
+  object-fit: cover;
   display: block;
   padding: 0;
 }
@@ -477,44 +458,6 @@ footer {
   padding-left: 2vw;
   padding-right: 2vw;
   margin: 0 20px;
-}
-@media screen and (max-width: 800px) {
-  .hero-section {
-    display: block;
-    box-shadow: unset;
-  }
-  .hero-content {
-    background: #fff;
-    color: #000;
-    padding: 20px;
-  }
-  .hero-content::after {
-    content: unset;
-  }
-  .hero-content .btn-signup {
-    display: none;
-  }
-  .hero-headline {
-    font-size: 4.5rem;
-    white-space: normal;
-  }
-  .hero-text {
-    width: unset;
-    font-size: 1.5rem;
-  }
-  .hero-img img {
-    border-radius: 10px;
-    margin-top: 40px;
-  }
-  .hero-section > .btn-signup {
-    display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
-  }
-  .copyrights {
-    margin-top: 50px;
-    text-align: center;
-  }
 }
 
 @keyframes modalopen {
@@ -534,3 +477,181 @@ footer {
 .errorContour{
   border: solid red 2px;
 }
+
+.logo{
+  height: auto;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 800px) {
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 0;
+    padding-top: 20px;
+    
+  }
+  .hero-content::after {
+    content: unset;
+  }
+  .hero-content .btn-signup {
+    display: none;
+  }
+  .hero-headline {
+    font-size: 4.5rem;
+    white-space: normal;
+  }
+  .hero-text {
+    width: unset;
+    font-size: 1.5rem;
+    
+  }
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .hero-section > .btn-signup {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+  }
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+  .topnav a {display: none; color: red}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive {
+    position: fixed;
+    z-index: 5;
+    background-color: white;
+  }
+  .topnav{
+    position: fixed;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    margin: 3%;
+    margin: 0;
+
+  }
+  
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  
+  }
+  
+  .opnav{
+    position: fixed;
+    z-index: 3;
+    background-color: white;
+  }
+  
+  .bground{
+    margin-top: 34px;
+    
+    
+    
+  }
+
+  .logo{
+    height: auto;
+    width: 65%;
+  }
+
+  .hero-headline{
+    margin-top: 5px;
+    font-size: 3rem;
+  }
+  .hero-text{
+    margin-top: 20px;
+    width: unset;
+    font-size: 18px;
+  }
+
+  .copyrights{
+    margin-top: 0;
+  }
+
+}
+
+
+
+@media screen and (max-width: 540px) {
+  .topnav a {display: none; }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    
+  }
+  .hero-headline{
+    font-size: 2.8rem;
+  }
+ 
+   
+} 
+
+
+@media screen and (max-width: 414px) {
+  
+  .hero-headline{
+    font-size: 2.5rem;
+  }
+  .hero-text{
+    font-size: 14px;
+  }
+
+ 
+}
+
+
+
+
+
+
+
+
+

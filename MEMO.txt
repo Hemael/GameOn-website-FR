@@ -12,7 +12,8 @@ length : taille
   
 
 
-
+annule le comportement par defaut
+  //e.preventDefault();
 
 
 
