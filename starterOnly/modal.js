@@ -34,14 +34,22 @@ closeBtn.forEach((btn) =>
     changeDisplayModal("none");
   })
 );
+btnClose.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    changeDisplayModal("none");
+  })
+);
 
 //fonction qui appel quand l'evenement est declenché
 function changeDisplayModal(displayChange) {
   modalbg.style.display = displayChange;
 }
 
+
 function validateForm(e) {
   
+  //annule le comportement par defaut
+  e.preventDefault();
 
   document.querySelectorAll(".error").forEach((p) => p.remove());
   document.querySelectorAll(".errorContour").forEach((p) => p.classList.remove("errorContour"));
@@ -80,7 +88,6 @@ function validateForm(e) {
     errors.push("acceptez les conditions d'utilisation");
     addElement(verification, "Vous devez vérifier que vous acceptez les termes et conditions.");
   }
-  console.log(date.value);
   if (date.value == "") {
     errors.push("entrez une date de naissance correct");
     addElement(date, "Veuillez entrer une date de naissance.");
@@ -88,12 +95,22 @@ function validateForm(e) {
 
   if (errors.length > 0) {
     console.log(errors);
-   
-    //annule le comportement par defaut
-    e.preventDefault();
-    
+  }
+  else{
+    updatePoppinValidate();
   }
 }
+
+function updatePoppinValidate(){
+  document.querySelector(".modal-body").innerHTML= "<p>Merci ! Votre réservation a été reçue.</p><br><button id='btnClose' class='button'>Fermer</button>";
+  
+  document.querySelector("#btnClose").addEventListener("click", () => {
+    changeDisplayModal("none");
+  });
+  
+
+}
+
 
 function isValid(regex, value) {
   return regexs[regex].test(value);
