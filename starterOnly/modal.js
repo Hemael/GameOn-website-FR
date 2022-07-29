@@ -20,7 +20,6 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const closeBtn = document.querySelectorAll(".close");
 const formData = document.querySelectorAll(".formData");
 const btn = document.getElementById("submit-btn");
-console.log(btn);
 
 // launch modal event
 // permet d'attribuer un evenement a un element
@@ -34,20 +33,13 @@ closeBtn.forEach((btn) =>
     changeDisplayModal("none");
   })
 );
-btnClose.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    changeDisplayModal("none");
-  })
-);
 
 //fonction qui appel quand l'evenement est declenché
 function changeDisplayModal(displayChange) {
   modalbg.style.display = displayChange;
 }
 
-
 function validateForm(e) {
-  
   //annule le comportement par defaut
   e.preventDefault();
 
@@ -95,32 +87,27 @@ function validateForm(e) {
 
   if (errors.length > 0) {
     console.log(errors);
-  }
-  else{
+  } else {
     updatePoppinValidate();
   }
 }
 
-function updatePoppinValidate(){
-  document.querySelector(".modal-body").innerHTML= "<p>Merci ! Votre réservation a été reçue.</p><br><button id='btnClose' class='button'>Fermer</button>";
-  
+function updatePoppinValidate() {
+  document.querySelector(".modal-body").innerHTML = "<p class='textmerci'>Merci ! Votre réservation a été reçue.</p><br><button id='btnClose' class='button'>Fermer</button>";
+
   document.querySelector("#btnClose").addEventListener("click", () => {
     changeDisplayModal("none");
   });
-  
-
 }
-
 
 function isValid(regex, value) {
   return regexs[regex].test(value);
 }
 
 function addElement(elementDom, texte) {
-  let p = document.createElement("p");
+  const p = document.createElement("p");
   p.classList.add("error");
   elementDom.classList.add("errorContour");
   p.append(texte);
   elementDom.parentElement.append(p);
 }
-
